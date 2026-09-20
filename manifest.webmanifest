@@ -1,10 +1,10 @@
 {
-  "name": "RT15 WT – Amalfi",
-  "short_name": "RT15 Amalfi",
+  "name": "RT15 WT – 2026",
+  "short_name": "RT15 2026",
   "start_url": "./?invite=RT15-2026",
   "display": "standalone",
   "background_color": "#070b12",
   "theme_color": "#070b12",
   "orientation": "portrait",
-  "description": "Privat rejseapp til RT15 WT – Amalfi."
+  "description": "Privat rejseapp til RT15 WT – 2026."
 }
