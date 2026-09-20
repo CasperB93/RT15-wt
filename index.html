@@ -14,7 +14,7 @@ main{padding:0 16px 90px;width:100%;max-width:520px;margin:0 auto}.hero{height:1
 .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);height:68px;background:rgba(7,16,24,.98);border-top:1px solid #24313d;display:flex;z-index:8}.nav button{flex:1;background:none;border:0;color:#a9b1b7;font-size:11px}.nav button.active{color:#ff9d20}.ico{font-size:22px;display:block}
 .page{display:none}.page.active{display:block}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:flex-end;z-index:20}.modal.open{display:flex}.sheet{width:min(520px,100%);max-height:90vh;overflow:auto;background:#0c1720;border-radius:24px 24px 0 0}.sheet img{width:100%;aspect-ratio:16/9;object-fit:cover}.inner{padding:20px}.close{float:right;border:0;border-radius:50%;width:36px;height:36px;background:#1b2935;color:#fff;font-size:20px;margin-top:-2px}.sheet h2{font-size:23px;margin:6px 0 15px}.sheet p{color:#d5d9dc;line-height:1.55}.sheet a{display:block;background:#ff9d20;color:#111;text-decoration:none;text-align:center;font-weight:800;border-radius:12px;padding:13px;margin-top:15px}
-.app:has(#home.active) > header{display:none}.app:has(#home.active) #home main{padding:0 16px 0}.app:has(#home.active) .next{position:absolute;z-index:3;left:32px;right:32px;bottom:82px;margin:0;padding:17px;border-radius:17px}.app:has(#home.active) .hero{height:100vh}.app:has(#home.active) .heroText{display:none}</style>
+.app:has(#home.active) > header{display:none}.app:has(#home.active) #home main{padding:0 16px 0}.app:has(#home.active) .next{position:absolute;z-index:3;left:32px;right:32px;bottom:82px;margin:0;padding:17px;border-radius:17px}.app:has(#home.active) .hero{height:100vh}.app:has(#home.active) .heroText{display:none}.live-flight-status{margin-top:14px;padding:12px 14px;border:1px solid #24313d;border-radius:12px;background:#0b1720;line-height:1.45;font-size:13px}.live-flight-status b{color:#ff9d20;font-size:10px;letter-spacing:1px}.live-flight-status.delayed{border-color:#ff9d20}.live-flight-status.cancelled{border-color:#e74c3c}.live-flight-status.landed{border-color:#48b26b}</style>
 <link rel="manifest" href="./manifest.webmanifest">
 <meta name="theme-color" content="#070b12">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -59,6 +59,28 @@ function closeM(){document.getElementById('modal').classList.remove('open')} ren
   }catch(e){
     // Keep the bundled UI available if the optional online config is temporarily unavailable.
   }
+  async function loadLiveFlightStatus(){
+    try{
+      const r=await fetch('./flight-status.json?ts='+Date.now(),{cache:'no-store'});
+      if(!r.ok) return;
+      const data=await r.json();
+      const map={'SK 2681':'SK 2681','SK 2682':'SK 2682'};
+      items.forEach(x=>{
+        const m=x.body.match(/SAS · (SK \d{4})/);
+        if(!m || !map[m[1]] || !data[m[1]]) return;
+        const f=data[m[1]];
+        const label=f.statusLabel || f.status || 'Status ukendt';
+        const cls=(f.status||'').toLowerCase().replace(/[^a-z]/g,'');
+        const delay=f.delayMinutes>0 ? ` · +${f.delayMinutes} min.` : '';
+        const gate=f.gate ? `<br>Gate ${f.gate}` : '';
+        const terminal=f.terminal ? ` · Terminal ${f.terminal}` : '';
+        const live=`<div class="live-flight-status ${cls}"><b>LIVE FLYSTATUS</b><br>✈️ ${label}${delay}${terminal}${gate}</div>`;
+        x.body=x.body.replace(/<div class=\"live-flight-status[\s\S]*?<\\/div>/,'')+live;
+      });
+      render();
+    }catch(e){}
+  }
+  loadLiveFlightStatus();
   if('serviceWorker' in navigator){ navigator.serviceWorker.register('./sw.js').catch(()=>{}); }
 })();
 </script>
