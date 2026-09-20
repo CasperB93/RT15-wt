@@ -1,0 +1,150 @@
+name: Update RT15 flight status
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-flight-status:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch flight status
+        env:
+          AVIATIONSTACK_KEY: ${{ secrets.AVIATIONSTACK_KEY }}
+        run: |
+          python3 <<'PY'
+          import json
+          import urllib.parse
+          import urllib.request
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+
+          API_KEY = "${AVIATIONSTACK_KEY}"
+
+          now = datetime.now(ZoneInfo("Europe/Copenhagen"))
+          today = now.strftime("%Y-%m-%d")
+
+          flights = [
+              {
+                  "flight": "SK2681",
+                  "date": "2026-09-25",
+                  "label": "25 september: CPH-NAP"
+              },
+              {
+                  "flight": "SK2682",
+                  "date": "2026-09-27",
+                  "label": "27 september: NAP-CPH"
+              }
+          ]
+
+          result = {
+              "updatedAt": now.isoformat(),
+              "flights": []
+          }
+
+          for item in flights:
+
+              # Brug kun API-kald på selve flydagen
+              if today != item["date"]:
+                  result["flights"].append({
+                      "flight": item["flight"],
+                      "date": item["date"],
+                      "label": item["label"],
+                      "status": "Afventer flydagen",
+                      "statusCode": "waiting"
+                  })
+                  continue
+
+              params = urllib.parse.urlencode({
+                  "access_key": API_KEY,
+                  "flight_iata": item["flight"],
+                  "flight_date": item["date"]
+              })
+
+              url = "https://api.aviationstack.com/v1/flights?" + params
+
+              try:
+                  with urllib.request.urlopen(url, timeout=30) as response:
+                      data = json.loads(response.read().decode("utf-8"))
+
+                  entries = data.get("data", [])
+
+                  if not entries:
+                      result["flights"].append({
+                          "flight": item["flight"],
+                          "date": item["date"],
+                          "label": item["label"],
+                          "status": "Ingen live-data endnu",
+                          "statusCode": "unknown"
+                      })
+                      continue
+
+                  f = entries[0]
+
+                  flight_status = (f.get("flight_status") or "").lower()
+                  departure = f.get("departure") or {}
+
+                  status_map = {
+                      "scheduled": ("Planlagt", "scheduled"),
+                      "active": ("I luften", "active"),
+                      "landed": ("Landed", "landed"),
+                      "cancelled": ("Aflyst", "cancelled"),
+                      "incident": ("Driftsforstyrrelse", "incident"),
+                      "diverted": ("Omdirigeret", "diverted")
+                  }
+
+                  status_label, status_code = status_map.get(
+                      flight_status,
+                      ("Status ukendt", "unknown")
+                  )
+
+                  result["flights"].append({
+                      "flight": item["flight"],
+                      "date": item["date"],
+                      "label": item["label"],
+                      "status": status_label,
+                      "statusCode": status_code,
+                      "delayMinutes": departure.get("delay"),
+                      "gate": departure.get("gate"),
+                      "terminal": departure.get("terminal"),
+                      "scheduled": departure.get("scheduled"),
+                      "estimated": departure.get("estimated"),
+                      "actual": departure.get("actual")
+                  })
+
+              except Exception as e:
+                  result["flights"].append({
+                      "flight": item["flight"],
+                      "date": item["date"],
+                      "label": item["label"],
+                      "status": "Status ukendt",
+                      "statusCode": "error"
+                  })
+
+          with open("flight-status.json", "w", encoding="utf-8") as file:
+              json.dump(result, file, ensure_ascii=False, indent=2)
+
+          print(json.dumps(result, ensure_ascii=False, indent=2))
+          PY
+
+      - name: Commit updated flight status
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add flight-status.json
+
+          if git diff --cached --quiet; then
+            echo "No flight status changes."
+          else
+            git commit -m "Update live flight status"
+            git push
+          fi
