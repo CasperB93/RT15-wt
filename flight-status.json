@@ -1,0 +1,19 @@
+{
+  "updatedAt": "2026-09-20T19:54:05.082516+02:00",
+  "flights": [
+    {
+      "flight": "SK2681",
+      "date": "2026-09-25",
+      "label": "25 september: CPH-NAP",
+      "status": "Afventer flydagen",
+      "statusCode": "waiting"
+    },
+    {
+      "flight": "SK2682",
+      "date": "2026-09-27",
+      "label": "27 september: NAP-CPH",
+      "status": "Afventer flydagen",
+      "statusCode": "waiting"
+    }
+  ]
+}
