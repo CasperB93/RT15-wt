@@ -1,7 +1,7 @@
 {
   "version": 1,
   "trip": "RT15 WT – Amalfi",
-  "updatedAt": "2026-09-20T13:25:00+02:00",
+  "updatedAt": "2026-09-20T13:35:00+02:00",
   "events": [
     {
       "day": "25 SEP",
@@ -22,21 +22,21 @@
       "img": "./hotel.jpg",
       "title": "25 september – Posa Posa Hotel",
       "time": "Check-in 18.00",
-      "body": "<p>Vores hotel i Positano. Her kan vi senere indsætte den endelige adresse og en direkte Google Maps-rute.</p><a href='https://www.google.com/maps/search/?api=1&query=Posa+Posa+Hotel+Positano' target='_blank'>Åbn Google Maps</a>"
+      "body": "<p>Posa Posa er et historisk 4-stjernet hotel, som ligger på bjergsiden i Positano med udsigt over havet og Amalfikysten. Hotellet ligger centralt i byen, og stranden ligger cirka 10 minutters gang ned gennem Positanos gader.</p><p>Hotellet har en klassisk italiensk stil med værelser og suiter fordelt over seks etager, mange med panoramaudsigt. Hotellet beskriver selv Posa Posa som et sted, der indfanger den klassiske Positano-stemning og “Dolce Vita”.</p><div class=\"info\"><div class=\"row\"><span class=\"label\">Check-in</span><b>18.00</b></div><div class=\"row\"><span class=\"label\">Adresse</span><b>Via Pasitea, 165, 84017 Positano SA, Italien</b></div></div><a class=\"btn\" href=\"https://www.google.com/maps/search/?api=1&query=Hotel+Posa+Posa%2C+Via+Pasitea+165%2C+Positano\" target=\"_blank\">Åbn i Google Maps</a>"
     },
     {
       "day": "25 SEP",
-      "img": "./restaurant.jpg",
+      "img": "./la-pergola.png",
       "title": "25 september – Middag på La Pergola",
       "time": "20.00–22.30",
       "body": "<p>La Pergola ligger direkte ved Spiaggia Grande i Positano og beskriver selv stedet som et historisk restaurantsted med en historie på mere end 100 år.</p><p>Restauranten er en del af Buca di Bacco, et af Positanos historiske steder. Buca di Bacco fortæller om en lang række berømte gæster gennem tiden – bl.a. Liz Taylor, Vittorio De Sica, Alberto Sordi, Franco Zeffirelli og Sir Laurence Olivier.</p><p>Så vi går altså til middag et sted med en ret seriøs Positano-historie. 🍷</p><div class=\"info\"><div class=\"row\"><span class=\"label\">Tid</span><b>20.00–22.30</b></div><div class=\"row\"><span class=\"label\">Sted</span><b>La Pergola</b></div><div class=\"row\"><span class=\"label\">Adresse</span><b>Via del Brigantino 35/37</b></div></div><a class=\"btn\" href=\"https://www.google.com/maps/search/?api=1&query=La+Pergola%2C+Via+del+Brigantino+35%2F37%2C+Positano\" target=\"_blank\">Åbn i Google Maps</a>"
     },
     {
       "day": "25 SEP",
-      "img": "./music.jpg",
+      "img": "./music-on-the-rocks.png",
       "title": "25 september – Music on the rocks",
       "time": "23.30–06.00",
-      "body": "<p><b>Music on the Rocks</b> er ikke ligefrem en almindelig natklub. Klubben er bygget direkte ind i klippen under Positano, helt nede ved vandet.</p><p>Rå klippevægge, havet lige udenfor og musik til langt ud på natten gør det til en ret særlig Positano-oplevelse. Vi starter aftenen kl. 23.30 – og så må vi se, hvor længe vi holder den kørende. 🕺🍾</p><div class=\"info\"><div class=\"row\"><span class=\"label\">Tid</span><b>23.30–06.00</b></div><div class=\"row\"><span class=\"label\">Adresse</span><b>Località Grotte Dell&apos;Incanto 51</b></div></div><a class=\"btn\" href=\"https://www.google.com/maps/search/?api=1&query=Music+on+the+Rocks%2C+Localit%C3%A0+Grotte+Dell%27Incanto+51%2C+Positano\" target=\"_blank\">Åbn i Google Maps</a>"
+      "body": "<p><b>Music on the Rocks</b> er ikke ligefrem en almindelig natklub. Klubben er bygget direkte ind i klippen under Positano, helt nede ved vandet.</p><p>Rå klippevægge, havet lige udenfor og musik til langt ud på natten gør det til en ret særlig Positano-oplevelse. Vi starter aftenen kl. 23.30 – og så må vi se, hvor længe vi holder den kørende. 🕺🍾</p><div class=\"info\"><div class=\"row\"><span class=\"label\">Tid</span><b>23.30–06.00</b></div><div class=\"row\"><span class=\"label\">Adresse</span><b>Località Grotte Dell&apos;Incanto 51</b></div></div><a class=\"btn\" href=\"https://www.google.com/maps/search/?api=1&query=Music+on+the+Rocks%2C+Localit%C3%A0+Grotte+Dell%27Incanto+51%2C+Positano\" target=\"_blank\">Åbn i Google Maps</a><a class=\"btn\" href=\"https://www.instagram.com/musicontherocksofficial/\" target=\"_blank\">Se deres Instagram</a>"
     },
     {
       "day": "26 SEP",
@@ -47,10 +47,10 @@
     },
     {
       "day": "26 SEP",
-      "img": "./restaurant.jpg",
+      "img": "./middag-positano.png",
       "title": "26 september – Middag i Positano",
-      "time": "19.00–21.00",
-      "body": "<p>Fælles middag i Positano. Restaurantnavn, adresse og reservation indsættes senere.</p>"
+      "time": "20.00",
+      "body": "<p>Efter vores yacht tur spiser vi middag på <b>Mele Pizza &amp; Grill</b> i Positano kl. 20.00.</p><p>Herefter er der fri leg i Positano – nyd byen, butikkerne, barerne og den unikke stemning.</p><div class=\"info\"><div class=\"row\"><span class=\"label\">Tid</span><b>20.00</b></div><div class=\"row\"><span class=\"label\">Sted</span><b>Mele Pizza &amp; Grill</b></div><div class=\"row\"><span class=\"label\">Adresse</span><b>Via Vecchia, 5, 84017 Positano, Italien</b></div></div><a class=\"btn\" href=\"https://www.google.com/maps/search/?api=1&query=Mele+Pizza+%26+Grill%2C+Via+Vecchia+5%2C+Positano\" target=\"_blank\">Åbn i Google Maps</a>"
     },
     {
       "day": "27 SEP",
@@ -61,10 +61,10 @@
     },
     {
       "day": "27 SEP",
-      "img": "./napoli.jpg",
+      "img": "./napoli-shopping.png",
       "title": "27 september – Napoli, shopping & frokost",
       "time": "11.00–13.00",
-      "body": "<p>Vi går fælles fra <b>Napoli Central Station</b> til <b>O’ Sile Mio Pizza</b> i Napoli, hvor vi starter dagen med napolitansk pizza.</p><p>Den napolitanske pizzakunst blev i 2017 optaget på UNESCOs liste over immateriel kulturarv. Så frokosten er faktisk en del af Napolis kulturarv. 🍕</p><p>Derefter er der <b>fri leg og shopping i Napolis gader</b>.</p><p><b>Til lufthavnen:</b> Når vi er færdige i byen, går man tilbage til <b>Piazza Garibaldi</b> foran Napoli Central Station. Her finder man <b>Alibus</b> mod <b>Aeroporto di Capodichino</b>.</p><p>Alibus er den direkte lufthavnsshuttle. Den kører cirka hvert 15. minut, og turen til Napoli Lufthavn tager omkring 15 minutter.</p><p><b>Ved lufthavnen:</b> Stå af ved Napoli Airport / terminalområdet og gå til <b>Terminal 1</b>.</p><p>✈️ <b>Vi mødes SENEST kl. 13.55 ved Terminal 1.</b></p><a href=\"https://www.google.com/maps/search/?api=1&query=O%27Sile%20Mio%20Pizza%20Napoli\" target=\"_blank\">Åbn i Google Maps</a>"
+      "body": "<p>Vi går fælles fra <b>Napoli Central Station</b> til <b>O’ Sole Mio Pizza</b> i Napoli, hvor vi starter med napolitansk pizza.</p><p>Den napolitanske pizzakunst blev i 2017 optaget på UNESCOs liste over immateriel kulturarv. Så frokosten er faktisk en del af Napolis kulturarv. 🍕</p><p>Derefter er der <b>fri leg og shopping til koner og børn, i Napolis gader</b>.</p><p><b>Til lufthavnen:</b> Når vi er færdige i byen, går man tilbage til <b>Piazza Garibaldi</b> foran Napoli Central Station. Her finder man <b>Alibus</b> mod <b>Aeroporto di Capodichino</b>.</p><p>Alibus er den direkte lufthavnsshuttle. Den kører cirka hvert 15. minut, og turen til Napoli Lufthavn tager omkring 15 minutter.</p><p><b>Ved lufthavnen:</b> Stå af ved Napoli Airport / terminalområdet og gå til <b>Terminal 1</b>.</p><p>✈️ <b>Vi mødes SENEST kl. 13.55 ved Terminal 1.</b></p><a href=\"https://www.google.com/maps/search/?api=1&query=O%27Sole%20Mio%20Pizza%20Napoli\" target=\"_blank\">Åbn i Google Maps</a>"
     },
     {
       "day": "27 SEP",
