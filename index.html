@@ -59,27 +59,55 @@ function closeM(){document.getElementById('modal').classList.remove('open')} ren
   }catch(e){
     // Keep the bundled UI available if the optional online config is temporarily unavailable.
   }
-  async function loadLiveFlightStatus(){
-    try{
-      const r=await fetch('./flight-status.json?ts='+Date.now(),{cache:'no-store'});
-      if(!r.ok) return;
-      const data=await r.json();
-      const map={'SK 2681':'SK 2681','SK 2682':'SK 2682'};
-      items.forEach(x=>{
-        const m=x.body.match(/SAS · (SK \d{4})/);
-        if(!m || !map[m[1]] || !data[m[1]]) return;
-        const f=data[m[1]];
-        const label=f.statusLabel || f.status || 'Status ukendt';
-        const cls=(f.status||'').toLowerCase().replace(/[^a-z]/g,'');
-        const delay=f.delayMinutes>0 ? ` · +${f.delayMinutes} min.` : '';
-        const gate=f.gate ? `<br>Gate ${f.gate}` : '';
-        const terminal=f.terminal ? ` · Terminal ${f.terminal}` : '';
-        const live=`<div class="live-flight-status ${cls}"><b>LIVE FLYSTATUS</b><br>✈️ ${label}${delay}${terminal}${gate}</div>`;
-        x.body=x.body.replace(/<div class=\"live-flight-status[\s\S]*?<\\/div>/,'')+live;
-      });
-      render();
-    }catch(e){}
-  }
+ async function loadLiveFlightStatus(){
+  try{
+    const r=await fetch('./flight-status.json?ts='+Date.now(),{cache:'no-store'});
+    if(!r.ok) return;
+
+    const data=await r.json();
+    const flights=Array.isArray(data.flights)?data.flights:[];
+
+    items.forEach(x=>{
+      const m=(x.body||'').match(/SAS\s*·\s*(SK\s*\d{4})/);
+      if(!m) return;
+
+      const flightNumber=m[1].replace(/\s+/g,'');
+      const f=flights.find(v=>
+        String(v.flight||'').replace(/\s+/g,'')===flightNumber
+      );
+
+      if(!f) return;
+
+      const label=f.status || 'Status ukendt';
+      const delay=Number(f.delayMinutes)>0
+        ? ` · +${f.delayMinutes} min.`
+        : '';
+      const gate=f.gate
+        ? `<br>Gate ${f.gate}`
+        : '';
+      const terminal=f.terminal
+        ? ` · Terminal ${f.terminal}`
+        : '';
+
+      const cls=(f.statusCode||'')
+        .toLowerCase()
+        .replace(/[^a-z]/g,'');
+
+      const live=
+        `<div class="live-flight-status ${cls}">`+
+        `<b>LIVE FLYSTATUS</b><br>`+
+        `✈️ ${label}${delay}${terminal}${gate}`+
+        `</div>`;
+
+      x.body=x.body.replace(
+        /<div class="live-flight-status"[\s\S]*?<\/div>/g,
+        ''
+      )+live;
+    });
+
+    render();
+  }catch(e){}
+}
   loadLiveFlightStatus();
   if('serviceWorker' in navigator){ navigator.serviceWorker.register('./sw.js').catch(()=>{}); }
 })();
