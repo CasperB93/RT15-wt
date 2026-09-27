@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-27T23:07:03.367324+02:00",
+  "updatedAt": "2026-09-28T00:06:51.244998+02:00",
   "flights": [
     {
       "flight": "SK2681",
@@ -12,8 +12,8 @@
       "flight": "SK2682",
       "date": "2026-09-27",
       "label": "27 september: NAP-CPH",
-      "status": "Status ukendt",
-      "statusCode": "error"
+      "status": "Afventer flydagen",
+      "statusCode": "waiting"
     }
   ]
 }
